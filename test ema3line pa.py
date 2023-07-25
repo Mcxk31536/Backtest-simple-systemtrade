@@ -185,7 +185,7 @@ for x in i:
         #print(databars)
         Balance = 25000
         for i in range(llong,_periods-3,1):
-            infoCandle = databars[i:i+3]
+            infoCandle = databars[i:i+4]
             PA = 10 # price action
             SIG = 11 # signal
             ORP = 12 # order price

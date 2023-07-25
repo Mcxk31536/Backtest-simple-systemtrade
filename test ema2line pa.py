@@ -7,9 +7,9 @@ import Price_Action as pa
 # open mt5
 mt5.initialize()
 
-#login =
-#password =
-#server = "XMGlobal-MT5 2"
+login = 66637082
+password = "/?65^a#425,M#$T"
+server = "XMGlobal-MT5 2"
 
 # Test the function with some data
 # requesting historical data
@@ -37,7 +37,7 @@ for x in i:
 
         tf = mt5.TIMEFRAME_M5
         periods_ = 0
-        _periods = 99999
+        _periods = 1000
         bars = mt5.copy_rates_from_pos(x, tf, periods_, _periods)
         databars = pd.DataFrame(bars)
         databars = databars[['time', 'open', 'high', 'low', 'close']]
@@ -49,22 +49,11 @@ for x in i:
         t = databars['time']
         databars["EMAShort"] = "NaN"
         databars["EMALong"] = "NaN"
-        databars["SMAL"] = "NaN"
-        databars["SMAH"] = "NaN"
-        SMAL = databars["SMAL"]
-        SMAH = databars["SMAH"]
 
         col_n_short = 5
         col_n_long = 6
-        col_n_SMAL = 7
-        col_n_SMAH = 8
-        col_n_SD = 9
-        col_n_minL = 10
-        col_n_maxH = 11
 
         # create sma long and short H1
-
-        BB = 14
         short = 14
         long = 60
         llong = 200
@@ -84,9 +73,9 @@ for x in i:
             AShort = EMAShort * (1 - multikonShort)
             EMAShort = EM + AShort
             databars.iat[short + i, col_n_short] = round(EMAShort, 3)
-        for i in range(llong):
-            x = i
-            databars.drop(index=_periods + x, inplace=True)
+        #for i in range(llong):
+        #    x = i
+        #    databars.drop(index=_periods + x, inplace=True)
 
         multikonLong = (2 / (long + 1))  # 2 ตัวคูณ
         smafirstLong = (sum(c[0:long])) / (long)  # 3 ใช้ sma ในครั้งแรกในการหา ema ตัวต่อไป
@@ -123,7 +112,6 @@ for x in i:
 
         ########## Demo Testing & Setting ##########
         balance = 25000
-        databars["Delay"] = 0
         databars["Price Action"] = "NaN"
         databars["signal"] = "NaN"
         databars["oreder price"] = "NaN"
@@ -136,18 +124,16 @@ for x in i:
         pd.set_option('display.max_columns',None)
         #print(databars)
 
-        for i in range(llong,_periods-3-7,1):
+        for i in range(llong,_periods-3,1):
             infoCandle = databars[i:i+4]
-            DE = 9
-            PA = 10 # price action
-            SIG = 11 # signal
-            ORP = 12 # order price
-            SL  = 13 # stop loss
-            TP = 14
-            LOT = 15
-            STA = 16
-            RATE = 17
-            DELAY = databars["Delay"]
+            PA = 7 # price action
+            SIG = 8 # signal
+            ORP = 9 # order price
+            SL  = 10 # stop loss
+            TP = 11
+            LOT = 12
+            STA = 13
+            RATE = 14
             EMAShort = databars["EMAShort"]
             EMALong = databars["EMALong"]
 
@@ -167,14 +153,6 @@ for x in i:
             low2 = l[i+1]
             close2 = c[i+1]
 
-            databars.iat[i+3+7,DE] = close0
-            CloseDE = databars["Delay"]
-            CloseDE0 = CloseDE[i+3]
-
-            SMAL = databars["SMAL"]
-            SMAH = databars["SMAH"]
-            SMAlow = SMAL[i+3]
-            SMAhigh = SMAH[i+3]
             EMAShort0 = EMAShort[i+3]
             EMALong0 = EMALong[i+3]
 
@@ -191,7 +169,7 @@ for x in i:
                 # create condition BUY
                 if EMAShort0 > EMALong0 :
                     print("EMAShort > EMALong > EMALLong : pass")
-                    if close1 < EMAShort1 and close1 > CloseDE0 :
+                    if close0 > EMAShort0 and close0 > EMAShort1:
                         print("close < EMAShort          :pass")
 
                         openpeiceB = close0 + 5
@@ -227,7 +205,7 @@ for x in i:
                 # create condition SELL
                 elif EMAShort0 < EMALong0 :
                     print("EMAShort < EMALong < EMALLong : pass")
-                    if close1 > EMAShort1 and close1 < CloseDE0 :
+                    if close0 < EMAShort0 and close0 < EMAShort1 :
                         print("close > EMAShort          :pass")
                         openpeiceS = close0 - 5
                         stoplossS = (max(high0, high1, high2)) + 5
@@ -315,13 +293,16 @@ for x in i:
             print(infoCandle)
             #time.sleep(1)
         CountPA = databars.groupby(['Price Action']).count()
+        CountPA = CountPA["signal"]
         print(CountPA)
         CountWL = databars.groupby(['WINRATE']).count()
+        CountWL = CountWL["signal"]
         print(CountWL)
+        STAT = CountWL
 
             # for i in range (_periods) :
 
-        time.sleep(10)
+        time.sleep(0.5)
 
 
 

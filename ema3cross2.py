@@ -7,9 +7,9 @@ import time
 # open mt5
 mt5.initialize()
 
-#login =
-#password =
-#server = "Exness-MT5Trial6"
+login = 66637082
+password = "/?65^a#425,M#$T"
+server = "XMGlobal-MT5 2"
 
 i = ["US30Cash"]
 for x in i:
@@ -34,7 +34,7 @@ for x in i:
 
         tf = mt5.TIMEFRAME_M5
         periods_ = 0
-        _periods = 24960
+        _periods = 1000
         bars = mt5.copy_rates_from_pos(x, tf, periods_, _periods)
         databars = pd.DataFrame(bars)
         databars = databars[['time', 'open', 'high', 'low', 'close']]
@@ -71,8 +71,7 @@ for x in i:
             AShort = EMAShort * (1 - multikonShort)
             EMAShort = EM + AShort
             databars.iat[short + i, col_n_short] = round(EMAShort, 3)
-        for i in range(llong):
-            databars.drop(index=_periods + i, inplace=True)
+
 
         # กำำหนดตัวแปร EMALong
         multikonLong = (2 / (long + 1))  # 2 ตัวคูณ
@@ -146,7 +145,7 @@ for x in i:
 
         Balance = 25000   ##### กำหนดจำนวนเงิน
         for i in range(llong,_periods-3,1):
-            infoCandle = databars[i:i+3]
+            infoCandle = databars[i:i+4]
             PA = 8 # price action
             SIG = 9 # signal
             ORP = 10 # order price
@@ -334,11 +333,14 @@ for x in i:
             print(infoCandle)
             #time.sleep(100)
         CountPA = databars.groupby(['Price Action']).count()
+        CountPA = CountPA["signal"]
         print(CountPA)
         CountWL = databars.groupby(['WINRATE']).count()
+        CountWL = CountWL["signal"]
         print(CountWL)
+        STAT = CountWL
 
-        time.sleep(1)
+        time.sleep(0.5)
 
 
 
