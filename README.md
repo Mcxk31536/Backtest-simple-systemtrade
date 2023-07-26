@@ -9,8 +9,7 @@ Price Action(PA)
 ขั้นตอนการใช้งาน
 1. สมัครสมาชิก Broker ที่ให้บริการเทรดใน Application MetaTrader5 ที่มีความน่าเชื่อถือ
 2. ดาว์โหลด Login และกดปุ่มเปิดโหมด AutoTrade(ต้องกด manual เท่านั้น)
-3. กรอก user password sever (Demo)
-4. ปรับ parameter EMA 3 เส้น และกำหนดว่าจะใช้ PA รูปแบบไหนบ้าง
-5. กำหนดความเสี่ยงและผลตอบแทน(Stop loss , Take profit)
-6. กำหนดเงื่อนไขในกรณีมี order ใน portfolio ว่าต้องการลดหรือเพิ่มความเสียงไหม
+3. ปรับ parameter EMA 3 เส้น และกำหนดว่าจะใช้ PA รูปแบบไหนบ้าง
+4. กำหนดความเสี่ยงและผลตอบแทน(Stop loss , Take profit)
+5. กำหนดเงื่อนไขในกรณีมี order ใน portfolio ว่าต้องการลดหรือเพิ่มความเสียงไหม
 อย่างไร (ปรับ Stop loss , Take profit)
