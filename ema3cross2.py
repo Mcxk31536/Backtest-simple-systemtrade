@@ -2,14 +2,10 @@ import MetaTrader5 as mt5
 import pandas as pd
 import plotly.graph_objects as go
 import time
-#import Price_Action as pa
+import Price_Action as pa
 
 # open mt5
 mt5.initialize()
-
-login = 66637082
-password = "/?65^a#425,M#$T"
-server = "XMGlobal-MT5 2"
 
 i = ["US30Cash"]
 for x in i:
@@ -141,7 +137,6 @@ for x in i:
         databars["WINRATE"] = "NaN"
 
         pd.set_option('display.max_columns',None)
-
 
         Balance = 25000   ##### กำหนดจำนวนเงิน
         for i in range(llong,_periods-3,1):
@@ -331,7 +326,7 @@ for x in i:
                         databars.iat[i + 3, RATE] = "win"
 
             print(infoCandle)
-            #time.sleep(100)
+            time.sleep(0.01)
         CountPA = databars.groupby(['Price Action']).count()
         CountPA = CountPA["signal"]
         print(CountPA)
@@ -340,7 +335,7 @@ for x in i:
         print(CountWL)
         STAT = CountWL
 
-        time.sleep(0.5)
+
 
 
 
