@@ -8,7 +8,7 @@ Price Action(PA)
  
 ขั้นตอนการใช้งาน
 
-0. Package          
+0. Install Package          
 
 certifi          2023.5.7
 distlib          0.3.6
