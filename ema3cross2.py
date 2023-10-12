@@ -6,6 +6,10 @@ import Price_Action as pa
 
 # open mt5
 mt5.initialize()
+login = 66637082
+password = "/?65^a#425,M#$T"
+server = "XMGlobal-MT5 2"
+mt5.login(login,password,server)
 
 i = ["US30Cash"]
 for x in i:

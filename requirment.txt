@@ -1,0 +1,17 @@
+certifi==2023.5.7
+distlib==0.3.6
+filelock==3.12.0
+MetaTrader5==5.0.45
+numpy==1.24.3
+packaging==23.1
+pandas==2.0.1
+pipenv==2023.4.29
+platformdirs==3.5.0
+plotly==5.15.0
+python-dateutil==2.8.2
+pytz==2023.3
+six==1.16.0
+tenacity==8.2.2
+tzdata==2023.3
+virtualenv==20.23.0
+virtualenv-clone==0.5.7
